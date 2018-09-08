@@ -1,5 +1,6 @@
 import requests
 from lxml import html
+from getMovieIMDBRating import getMovieIMDBRating
 
 bookmyshow_url='https://in.bookmyshow.com/pune/movies/'
 
@@ -11,12 +12,13 @@ def getRunningMovies(lang):
     bookmyshow_content=requests.get(new_url)
 
     html_tree=html.fromstring(bookmyshow_content.content)
-    #movies=html_tree.xpath('//*[@id="now-showing"]/section[1]/div/div/div[2]/div/div/div[1]/div[1]/a/div/div[2]/div[2]/div[1]/h4/text()')
     movies=html_tree.xpath('//div[@class="card-title"]/h4/text()')
     movie_count=len(movies)
     if movie_count>0:
         for movie in range(movie_count):
             print(movies[movie])
+            rating=getMovieIMDBRating(movies[movie])
+            print(rating)
     else:
         print('Oops ! Sorry no movies found!')
     
