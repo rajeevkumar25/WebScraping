@@ -1,3 +1,5 @@
+#--------------This Program scapes naukri.com site and gets the job details for user given skill sets open positions in Pune
+
 from lxml import html
 import requests as req
 
