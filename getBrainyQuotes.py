@@ -14,9 +14,14 @@ def getSiteContent(url):
 def getWisdomQuotes():
     htmlTree=getSiteContent(brainyUrl)
     quotes=htmlTree.xpath('//div[@class="clearfix"]/a[1]/text()')
+    #print(quotes)
     authors=htmlTree.xpath('//div[@class="clearfix"]/a[2]/text()')
-    wisdoms=zip(quotes,authors)
-    print(len(wisdoms))
+    #print(authors)
+    if len(authors)!=0:
+        wisdoms=zip(quotes,authors)
+    else:
+        wisdoms=quotes    
+    #print(len(wisdoms))
     for wisdom in wisdoms:
         print(wisdom)
         print('============================================')
@@ -26,9 +31,11 @@ def getTopicWisdom(topic):
     
     topicQuotes=htmlTree.xpath('//div[@class="clearfix"]/a[1]/text()')
     topicQuoteAuthors=htmlTree.xpath('//div[@class="clearfix"]/a[2]/text()')
-
-    topicWisdom=zip(topicQuotes,topicQuoteAuthors)
-    print(len(topicWisdom))
+    if len(topicQuoteAuthors)!=0:
+        topicWisdom=zip(topicQuotes,topicQuoteAuthors)
+    else:
+        topicWisdom=topicQuotes    
+    #print(len(topicWisdom))
     if (len(topicWisdom))>0:
         for wis in topicWisdom:
             print(wis)
@@ -36,16 +43,13 @@ def getTopicWisdom(topic):
     else:
         print('NoQuotesFound!')
 
-
-
-
 if __name__=='__main__':
-    wisdomType=raw_input('Which Quotes? Random or Topic ! ')
+    wisdomType=input('Which Quotes? Random or Topic ! ')
 
     if wisdomType.lower()=='random':
         getWisdomQuotes()
     elif wisdomType.lower()=='topic':
-        topic=raw_input('Which Topic? (Ex. Family , Brainy , Funny , Money, Mom , Respect , Sad , Motivational , Time, Trust etc.')
+        topic=input('Which Topic? (Ex. Family , Brainy , Funny , Money, Mom , Respect , Sad , Motivational , Time, Trust etc.')
         if topic.lower()!="":
             getTopicWisdom(topic)
         

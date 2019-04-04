@@ -17,14 +17,15 @@ def getRunningMovies(lang):
     if movie_count>0:
         for movie in range(movie_count):
             print(movies[movie])
-            rating=getMovieIMDBRating(movies[movie])
-            print(rating)
+            rating=str(getMovieIMDBRating(movies[movie]))
+            print("IMDB Rating :- " + rating)
+            print("==================")
     else:
         print('Oops ! Sorry no movies found!')
     
 
 if __name__=='__main__':
-    language=raw_input('Which language movies? ')
+    language=input('Which language movies? ')
     if language!="":
         getRunningMovies(language)
     else:
