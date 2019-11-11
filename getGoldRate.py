@@ -16,10 +16,10 @@ def getGoldRate(cityName):
         print(rate)
 
 if __name__=='__main__':
-    city=raw_input('Which City gold rate you want to check? ')
+    city=input('Which City gold rate you want to check? ')
     if city!="":
         getGoldRate(city)
     else:
-        city=raw_input('Please enter city name! ')
+        city=input('Please enter city name! ')
         getGoldRate(city)
     
